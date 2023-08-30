@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {FileUploadService} from "../../service/file-upload.service";
+import {FileUploadService} from "../../_services/file-upload.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'app-package-import-page',
@@ -16,7 +17,13 @@ export class PackageImportPageComponent implements OnInit {
   fileName = 'Select File';
   fileInfos?: Observable<any>;
 
-  constructor(private uploadService: FileUploadService) { }
+  @ViewChild('successNotificationTemplate') successNotificationTemplate: TemplateRef<{}>;
+
+  constructor(private uploadService: FileUploadService, private notification: NzNotificationService) { }
+
+  createBasicNotification(): void {
+    this.notification.template(this.successNotificationTemplate);
+  }
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
@@ -44,10 +51,12 @@ export class PackageImportPageComponent implements OnInit {
           } else if (event instanceof HttpResponse) {
             this.message = event.body.message;
             this.fileInfos = this.uploadService.getFiles();
+            this.createBasicNotification()
           }
         },
         (err: any) => {
           console.log(err);
+          this.createBasicNotification()
           this.progress = 0;
 
           if (err.error && err.error.message) {

@@ -1,4 +1,4 @@
-<div style="width: 50%; margin:auto">
+<div>
   <div>
     <mat-toolbar *ngIf="currentFile" class="progress-bar">
       <mat-progress-bar [value]="progress" color="accent"></mat-progress-bar>
@@ -29,21 +29,19 @@
       </div>
     </mat-form-field>
   </div>
-
-  <div *ngIf="message" class="message">
-    {{ message }}
-  </div>
-
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>List of Files</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list role="list">
-        <mat-list-item *ngFor="let file of fileInfos | async" role="listitem">
-          <a href="{{ file.url }}">{{ file.name }}</a>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
 </div>
+
+<ng-template #successNotificationTemplate>
+  <div class="ant-notification-notice-content">
+    <div class="ant-notification-notice-with-icon">
+          <span class="ant-notification-notice-icon">
+            <span nz-icon nzType="smile" style="color: rgb(16, 142, 233);"></span>
+          </span>
+      <div class="ant-notification-notice-message">Notification Title</div>
+      <div class="ant-notification-notice-description">
+        This is the content of the notification. This is the content of the notification. This is the content of the
+        notification.
+      </div>
+    </div>
+  </div>
+</ng-template>

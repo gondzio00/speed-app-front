@@ -38,6 +38,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
 import {httpInterceptorProviders} from "./_helpers/http.interceptor";
+import {NzNotificationModule} from 'ng-zorro-antd/notification';
 
 registerLocaleData(pl);
 
@@ -77,7 +78,8 @@ registerLocaleData(pl);
     NzGridModule,
     NzFormModule,
     NzInputModule,
-    NzButtonModule
+    NzButtonModule,
+    NzNotificationModule
   ],
   providers: [
     httpInterceptorProviders,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {FileUploadService} from "../../service/file-upload.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {FileUploadService} from "../../_services/file-upload.service";
 
 @Component({
   selector: 'app-manipulation-data-import-page',
