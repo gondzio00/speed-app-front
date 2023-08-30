@@ -13,7 +13,7 @@ export class DeliveryService {
   constructor(private http: HttpClient) {}
 
   findAllByPackageNumber(packageName: string): Observable<any> {
-    return this.http.get<Delivery[]>(API_URL + 'get/' + packageName, {withCredentials: true});
+    return this.http.get<Delivery[]>(API_URL + 'get/' + packageName);
   }
 
   findOneByPackageNumber(packageName: string | null): Observable<any> {
