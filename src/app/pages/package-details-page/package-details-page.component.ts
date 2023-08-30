@@ -64,7 +64,7 @@ export class PackageDetailsPageComponent {
       return
     }
 
-    this.deliveryService.findOneUpdatedByPackageNumber(packageNumber)
+    this.deliveryService.findOneByPackageNumber(packageNumber)
       .subscribe(data => {
         this.delivery = data
         this.setFormData()
