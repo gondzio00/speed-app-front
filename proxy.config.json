@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://speed-app.onrender.com",
+    "secure": false
+  }
+}
