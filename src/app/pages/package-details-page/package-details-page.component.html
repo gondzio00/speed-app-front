@@ -1,16 +1,20 @@
 <div>
-
-  <h3 routerLink="/"><a>Powróć</a></h3>
+  <nz-page-header
+    class="site-page-header"
+    routerLink="/"
+    nzBackIcon
+    nzTitle="Wróć"
+  ></nz-page-header>
 
   <h2 style="width: 100%">Numer przesyłki: {{delivery.packageNumber}}</h2>
 
 
   <div nz-row>
-    <div nz-col nzSpan="12">
-      <form nz-form [formGroup]="form" nzLayout="vertical" class="example-form">
+    <div nz-col nzSpan="12" style="padding-right: 2px">
+      <form nz-form [formGroup]="form" nzLayout="vertical" class="example-form" >
         <nz-form-item *ngFor="let field of formFields" class="example-full-width">
-          <nz-form-label [nzXs]="12" nzLabelAlign="left" nzSpan="4">{{field.label}}</nz-form-label>
-          <nz-form-control [nzXs]="12" nzSpan="8">
+          <nz-form-label [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}" nzLabelAlign="left">{{field.label}}</nz-form-label>
+          <nz-form-control [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}">
             <input [formControlName]="field.formInputName" nz-input />
           </nz-form-control>
         </nz-form-item>
@@ -18,16 +22,16 @@
     </div>
     <div nz-col nzSpan="12">
       <form nz-form [formGroup]="form2" nzLayout="vertical" class="example-form">
-        <nz-form-item class="example-full-width" hidden>
-          <nz-form-label [nzXs]="12" nzLabelAlign="left" nzSpan="4">Colli</nz-form-label>
-          <nz-form-control [nzXs]="12" nzSpan="8">
-            <input formControlName="" nz-input />
-          </nz-form-control>
-        </nz-form-item>
+<!--        <nz-form-item class="example-full-width" hidden>-->
+<!--          <nz-form-label [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}">Colli</nz-form-label>-->
+<!--          <nz-form-control [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}">-->
+<!--            <input formControlName="" nz-input />-->
+<!--          </nz-form-control>-->
+<!--        </nz-form-item>-->
 
         <nz-form-item *ngFor="let field of formFields" class="example-full-width">
-          <nz-form-label [nzXs]="12" nzLabelAlign="left" nzSpan="4">{{field.label}}</nz-form-label>
-          <nz-form-control [nzXs]="12" nzSpan="8">
+          <nz-form-label [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}">{{field.label}}</nz-form-label>
+          <nz-form-control [nzXs]="{span:12, offset:0}" [nzMd]="{span:12, offset:6}">
             <input [formControlName]="field.formInputName" nz-input />
           </nz-form-control>
         </nz-form-item>
@@ -39,6 +43,4 @@
       </form>
     </div>
   </div>
-
-
 </div>

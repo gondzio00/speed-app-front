@@ -39,6 +39,15 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
 import {httpInterceptorProviders} from "./_helpers/http.interceptor";
 import {NzNotificationModule} from 'ng-zorro-antd/notification';
+import {NzUploadModule} from "ng-zorro-antd/upload";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
+import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
+import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
+import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzTableModule} from "ng-zorro-antd/table";
 
 registerLocaleData(pl);
 
@@ -79,7 +88,16 @@ registerLocaleData(pl);
     NzFormModule,
     NzInputModule,
     NzButtonModule,
-    NzNotificationModule
+    NzNotificationModule,
+    NzUploadModule,
+    NzListModule,
+    NzCardModule,
+    NzPageHeaderModule,
+    NzAutocompleteModule,
+    NzEmptyModule,
+    NzBreadCrumbModule,
+    NzDescriptionsModule,
+    NzTableModule
   ],
   providers: [
     httpInterceptorProviders,

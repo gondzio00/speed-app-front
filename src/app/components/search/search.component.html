@@ -1,6 +1,20 @@
-<div style="width: 100%;">
-  <mat-form-field class="search-bar">
-    <mat-label>Wyszukaj barcode</mat-label>
-    <input matInput #value (keyup)="search(value)">
-  </mat-form-field>
+<div>
+  <div class="example-input">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixIconButton">
+    <input
+      placeholder="Wyszukaj"
+      nz-input
+      (input)="search(inputValue)"
+      [(ngModel)]="inputValue"
+    />
+    </nz-input-group>
+<!--    <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>-->
+  </div>
 </div>
+
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSize="large" nzSearch>
+    <span nz-icon nzType="search" nzTheme="outline"></span>
+  </button>
+</ng-template>
+

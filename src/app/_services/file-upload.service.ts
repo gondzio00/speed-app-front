@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileUploadService {
-  private baseUrl = 'https://speed-app.onrender.com';
+  public baseUrl = 'https://speed-app.onrender.com';
 
   constructor(private http: HttpClient) { }
 

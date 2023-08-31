@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {FileUploadService} from "../../_services/file-upload.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
+import {NzUploadFile} from "ng-zorro-antd/upload";
 
 @Component({
   selector: 'app-manipulation-data-import-page',
@@ -16,11 +18,15 @@ export class ManipulationDataImportPageComponent implements OnInit {
   fileName = 'Select File';
   fileInfos?: Observable<any>;
 
-  constructor(private uploadService: FileUploadService) {
+  constructor(private uploadService: FileUploadService, private notification: NzNotificationService) {
   }
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
+  }
+
+  addFile(file: NzUploadFile): Observable<string> {
+    return of("https://speed-app.onrender.com/api/manipulation/upload")
   }
 
   selectFile(event: any): void {

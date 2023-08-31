@@ -1,17 +1,7 @@
-<nz-layout class="app-layout" style="width: 100%">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <a>
-        <h1>Speed app</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Panel Główny" nzIcon="dashboard">
+<nz-layout class="layout">
+
+    <ul nz-menu nzTheme="dark" nzMode="vertical">
+      <li nz-submenu nzTitle="Panel Główny" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter [hidden]="!isLoggedIn()">
             <a routerLink="/">Wyszukaj</a>
@@ -28,20 +18,11 @@
         </ul>
       </li>
     </ul>
-  </nz-sider>
+
+
   <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
-        </span>
-      </div>
-    </nz-header>
     <nz-content>
-      <div class="inner-content" style="overflow:scroll;">
+      <div style="padding: 20px">
         <router-outlet></router-outlet>
       </div>
     </nz-content>

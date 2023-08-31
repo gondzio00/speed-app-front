@@ -1,9 +1,15 @@
-<div style="width: 100%;">
-  <mat-list role="list" *ngIf="deliveries.length > 0; else notFound">
-    <mat-list-item *ngFor="let delivery of deliveries" role="listitem" [routerLink]="['/package', delivery.packageNumber]">{{delivery.packageNumber}}</mat-list-item>
-  </mat-list>
-</div>
-
+<br>
+<nz-list *ngIf="deliveries.length > 0; else notFound" nzGrid>
+  <div [nzGutter]="16" nz-row>
+    <div *ngFor="let delivery of deliveries" [nzLg]="{ span: 6}" [nzXs]="{ span: 24 }"
+         [routerLink]="['/package', delivery.packageNumber]" nz-col
+         role="listitem"><br>
+      <nz-list-item style="cursor: pointer">
+        <nz-card [nzTitle]="delivery.packageNumber">{{delivery.senderName}} - {{delivery.receiverName}}</nz-card>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
 <ng-template #notFound>
-  <h1 style="text-align: center">Brak wyników</h1>
+  <nz-empty nzNotFoundContent="Brak wyników"></nz-empty>
 </ng-template>

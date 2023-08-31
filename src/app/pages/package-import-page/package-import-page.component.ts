@@ -1,8 +1,9 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {FileUploadService} from "../../_services/file-upload.service";
 import {NzNotificationService} from "ng-zorro-antd/notification";
+import {NzUploadFile} from "ng-zorro-antd/upload";
 
 @Component({
   selector: 'app-package-import-page',
@@ -19,9 +20,16 @@ export class PackageImportPageComponent implements OnInit {
 
   @ViewChild('successNotificationTemplate') successNotificationTemplate: TemplateRef<{}>;
 
-  constructor(private uploadService: FileUploadService, private notification: NzNotificationService) { }
+  constructor(private uploadService: FileUploadService, private notification: NzNotificationService) {
+  }
+
+  addFile(file: NzUploadFile): Observable<string> {
+    return of("https://speed-app.onrender.com/api/packages/upload")
+  }
+
 
   createBasicNotification(): void {
+    console.log("not")
     this.notification.template(this.successNotificationTemplate);
   }
 
@@ -39,12 +47,12 @@ export class PackageImportPageComponent implements OnInit {
     }
   }
 
-  upload(): void {
+  upload(file: any): void {
     this.progress = 0;
     this.message = "";
 
-    if (this.currentFile) {
-      this.uploadService.uploadPackages(this.currentFile).subscribe(
+    if (file) {
+      this.uploadService.uploadPackages(file).subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);

@@ -1,41 +1,41 @@
 export class Delivery {
-  totalColli: String;
-  packageNumber: String;
-  road: String;
-  weight: String;
-  manipUnit: String;
+  totalColli: string;
+  packageNumber: string;
+  road: string;
+  weight: string;
+  manipUnit: string;
 
-  receiverName: String;
-  receiverStreet: String;
-  receiverCity: String;
-  receiverPostalCode: String;
+  receiverName: string;
+  receiverStreet: string;
+  receiverCity: string;
+  receiverPostalCode: string;
 
-  senderName: String;
-  senderStreet: String;
-  senderCity: String;
-  senderPostalCode: String;
+  senderName: string;
+  senderStreet: string;
+  senderCity: string;
+  senderPostalCode: string;
 
-  lastDepotStatus: String;
-  lastStatus: String;
+  lastDepotStatus: string;
+  lastStatus: string;
   lastStatusDate: Date;
 
-  receiverDepot: String;
-  senderDepot: String;
+  receiverDepot: string;
+  senderDepot: string;
 
   plannedCollectionDate: Date;
   plannedDeliveryDate: Date;
 
-  collectionRoute: String;
-  distributionRoute: String;
+  collectionRoute: string;
+  distributionRoute: string;
 
-  collectionDriver: String;
-  distributionDriver: String;
+  collectionDriver: string;
+  distributionDriver: string;
 
-  volume: String;
-  operaticVolumeWeight: String;
-  operaticVolumeCalculated: String;
+  volume: string;
+  operaticVolumeWeight: string;
+  operaticVolumeCalculated: string;
 
-  constructor(totalColli: String, packageNumber: String, road: String, weight: String, manipUnit: String, receiverName: String, receiverStreet: String, receiverCity: String, receiverPostalCode: String, senderName: String, senderStreet: String, senderCity: String, senderPostalCode: String, lastDepotStatus: String, lastStatus: String, lastStatusDate: Date, receiverDepot: String, senderDepot: String, plannedCollectionDate: Date, plannedDeliveryDate: Date, collectionRoute: String, distributionRoute: String, collectionDriver: String, distributionDriver: String, volume: String, operaticVolumeWeight: String, operaticVolumeCalculated: String) {
+  constructor(totalColli: string, packageNumber: string, road: string, weight: string, manipUnit: string, receiverName: string, receiverStreet: string, receiverCity: string, receiverPostalCode: string, senderName: string, senderStreet: string, senderCity: string, senderPostalCode: string, lastDepotStatus: string, lastStatus: string, lastStatusDate: Date, receiverDepot: string, senderDepot: string, plannedCollectionDate: Date, plannedDeliveryDate: Date, collectionRoute: string, distributionRoute: string, collectionDriver: string, distributionDriver: string, volume: string, operaticVolumeWeight: string, operaticVolumeCalculated: string) {
     this.totalColli = totalColli;
     this.packageNumber = packageNumber;
     this.road = road;

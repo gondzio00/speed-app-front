@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Delivery} from "../../model/delivery";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DeliveryService} from "../../_services/delivery.service";
 
 @Component({
@@ -8,16 +7,23 @@ import {DeliveryService} from "../../_services/delivery.service";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit{
 
   @Output() searchNotify: EventEmitter<Delivery[]> = new EventEmitter();
+  inputValue: string;
+  options: string[];
 
   constructor(private deliveryService: DeliveryService) {
   }
 
-  public search(value: HTMLInputElement): void {
+  getSearchValue() {
+    return this.deliveryService.getSearch()
+  }
 
-    this.deliveryService.findAllByPackageNumber(value.value)
+  public search(value: string): void {
+    this.deliveryService.setSearch(value)
+
+    this.deliveryService.findAllByPackageNumber(value)
       .subscribe(data => {
         this.notifySearch(data)
       })
@@ -27,5 +33,18 @@ export class SearchComponent {
     console.log("emmit : " + deliveries)
 
     this.searchNotify.emit(deliveries);
+  }
+
+  ngOnInit(): void {
+    this.deliveryService.findAll()
+      .subscribe(data => {
+        this.options = data.map(delivery => delivery.packageNumber)
+      })
+
+    let value = this.getSearchValue()
+    if (value) {
+      this.inputValue = value;
+      this.search(value)
+    }
   }
 }

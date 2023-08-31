@@ -51,11 +51,11 @@ export class PackageDetailsPageComponent {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-
-      this.packageNumber = paramMap.get('packageNumber');
-
-      this.setBasicFormData(paramMap.get('packageNumber'))
-      this.setUpdatedFormData(paramMap.get('packageNumber'))
+      if (paramMap.get('packageNumber')) {
+        this.packageNumber = paramMap.get('packageNumber');
+        this.setBasicFormData(paramMap.get('packageNumber'))
+        this.setUpdatedFormData(paramMap.get('packageNumber'))
+      }
     });
   }
 
@@ -68,6 +68,7 @@ export class PackageDetailsPageComponent {
       .subscribe(data => {
         this.delivery = data
         this.setFormData()
+        this.setFormData2()
       })
   }
 
@@ -91,7 +92,7 @@ export class PackageDetailsPageComponent {
   }
 
   private setFormData2() {
-    if (this.updatedDelivery == null) {
+    if (this.updatedDelivery == null && this.delivery != null) {
       this.form2 = this.formBuilder.group({
         totalColli: [this.delivery.totalColli],
         packageNumber: [this.delivery.packageNumber],
@@ -139,26 +140,28 @@ export class PackageDetailsPageComponent {
   }
 
   private setFormData() {
-    this.form = this.formBuilder.group({
-      totalColli: [this.delivery.totalColli],
-      packageNumber: [this.delivery.packageNumber],
-      road: [this.delivery.road],
-      weight: [this.delivery.weight],
-      manipUnit: [this.delivery.manipUnit],
-      receiverName: [this.delivery.receiverName],
-      receiverStreet: [this.delivery.receiverStreet],
-      receiverCity: [this.delivery.receiverCity],
-      receiverPostalCode: [this.delivery.receiverPostalCode],
-      senderName: [this.delivery.senderName],
-      senderStreet: [this.delivery.senderStreet],
-      senderCity: [this.delivery.senderCity],
-      senderPostalCode: [this.delivery.senderPostalCode],
-      lastDepotStatus: [this.delivery.lastDepotStatus],
-      receiverDepot: [this.delivery.receiverDepot],
-      senderDepot: [this.delivery.senderDepot],
-      volume: [this.delivery.volume],
-      operaticVolumeWeight: [this.delivery.operaticVolumeWeight],
-      operaticVolumeCalculated: [this.delivery.operaticVolumeCalculated]
-    });
+    if (this.delivery != null) {
+      this.form = this.formBuilder.group({
+        totalColli: [this.delivery.totalColli],
+        packageNumber: [this.delivery.packageNumber],
+        road: [this.delivery.road],
+        weight: [this.delivery.weight],
+        manipUnit: [this.delivery.manipUnit],
+        receiverName: [this.delivery.receiverName],
+        receiverStreet: [this.delivery.receiverStreet],
+        receiverCity: [this.delivery.receiverCity],
+        receiverPostalCode: [this.delivery.receiverPostalCode],
+        senderName: [this.delivery.senderName],
+        senderStreet: [this.delivery.senderStreet],
+        senderCity: [this.delivery.senderCity],
+        senderPostalCode: [this.delivery.senderPostalCode],
+        lastDepotStatus: [this.delivery.lastDepotStatus],
+        receiverDepot: [this.delivery.receiverDepot],
+        senderDepot: [this.delivery.senderDepot],
+        volume: [this.delivery.volume],
+        operaticVolumeWeight: [this.delivery.operaticVolumeWeight],
+        operaticVolumeCalculated: [this.delivery.operaticVolumeCalculated]
+      });
+    }
   }
 }
