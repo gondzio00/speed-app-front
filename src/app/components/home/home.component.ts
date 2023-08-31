@@ -12,8 +12,6 @@ export class HomeComponent {
 
 
   public setSearchListData($event: Delivery[]) {
-    console.log("got : " + $event)
-
     this.searchListData = $event
   }
 }

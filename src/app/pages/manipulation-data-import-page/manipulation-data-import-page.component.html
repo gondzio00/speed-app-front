@@ -52,6 +52,7 @@
 <nz-upload
   nzType="drag"
   [nzAction]="addFile"
+  (nzChange)="handleChange($event)"
 >
   <p class="ant-upload-drag-icon">
     <span nz-icon nzType="inbox"></span>

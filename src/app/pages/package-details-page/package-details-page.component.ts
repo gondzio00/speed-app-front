@@ -3,6 +3,7 @@ import {Delivery} from "../../model/delivery";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DeliveryService} from "../../_services/delivery.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 interface FormField {
   label: string;
@@ -46,7 +47,7 @@ export class PackageDetailsPageComponent {
     {label: 'Wysokość (m):', formInputName: 'operaticVolumeCalculated'},
   ]
 
-  constructor(private route: ActivatedRoute, private deliveryService: DeliveryService, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private deliveryService: DeliveryService, private formBuilder: FormBuilder, private notification: NzNotificationService) {
   }
 
   ngOnInit() {
@@ -84,10 +85,19 @@ export class PackageDetailsPageComponent {
       })
   }
 
+  saveDeliveryNotification(): void {
+    this.notification.create(
+      "success",
+      'Zapis danych',
+      'Pomyślnie zapisano dane o paczce'
+    );
+  }
+
   submitData() {
     this.deliveryService.saveUpdatedDelivery(this.packageNumber, this.form2.value)
       .subscribe(data => {
         this.setUpdatedFormData(this.packageNumber)
+        this.saveDeliveryNotification()
       })
   }
 

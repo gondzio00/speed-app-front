@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../_services/storage.service";
 import {AuthService} from "../../_services/auth.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginPageComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) {
+  constructor(private authService: AuthService, private storageService: StorageService, private notification: NzNotificationService) {
   }
 
   ngOnInit(): void {
@@ -27,10 +28,32 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+  loginSuccessNotification(): void {
+    this.notification.create(
+      "success",
+      'Logowanie',
+      'Pomyślnie zalogowano'
+    );
+  }
+
+  loginFailedNotification(): void {
+    this.notification.create(
+      "error",
+      'Logowanie',
+      'Nie udało się zalogować'
+    );
+  }
+
+  logoutNotification(): void {
+    this.notification.create(
+      "success",
+      'Logowanie',
+      'Pomyślnie wylogowano'
+    );
+  }
+
   onSubmit(): void {
     const {username, password} = this.form;
-
-    console.log("Try login" + username + password)
 
     this.authService.login(username, password).subscribe({
       next: data => {
@@ -39,10 +62,14 @@ export class LoginPageComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        // this.reloadPage();
+
+        this.loginSuccessNotification()
       },
       error: err => {
         this.errorMessage = err.error.message;
+
+        this.loginFailedNotification()
+
         this.isLoginFailed = true;
       }
     });
@@ -56,7 +83,8 @@ export class LoginPageComponent implements OnInit {
     this.authService.logout().subscribe({
       next: data => {
         this.storageService.clean()
-        this.reloadPage()
+        this.isLoggedIn = false;
+        this.logoutNotification()
       }
     });
 
