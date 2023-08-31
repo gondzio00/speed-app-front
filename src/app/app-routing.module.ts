@@ -7,23 +7,28 @@ import {
   ManipulationDataImportPageComponent
 } from "./pages/manipulation-data-import-page/manipulation-data-import-page.component";
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
+import {AuthGuard} from "./_helpers/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'package/:packageNumber',
-    component: PackageDetailsPageComponent
+    component: PackageDetailsPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'packages/import',
-    component: PackageImportPageComponent
+    component: PackageImportPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'manipulation-data/import',
-    component: ManipulationDataImportPageComponent
+    component: ManipulationDataImportPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
